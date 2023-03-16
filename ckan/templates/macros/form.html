@@ -91,6 +91,8 @@ options     - A list/tuple of fields to be used as <options>.
         , {'value': '2', 'text': _('Not private data')}
     ], selected=data.the_data_type if data.the_data_type else '0', is_required=true) }}
 
+    Civity DEV Gil Erik changed the <option> to allow select form options to have more attributes
+
     #}
     {% macro select(name, id='', label='', options='', selected='', error='', classes=[], attrs={'class': 'form-control'}, is_required=false) %}
     {% set classes = (classes|list) %}
@@ -100,7 +102,7 @@ options     - A list/tuple of fields to be used as <options>.
     {% call input_block(id or name, label or name, error, classes, extra_html=extra_html, is_required=is_required) %}
     <select id="{{ id or name }}" name="{{ name }}" {{ attributes(attrs) }}>
       {% for option in options %}
-  <option value="{{ option.value }}"{% if option.value == selected %} selected{% endif %}>{{ option.text or option.value }}</option>
+        <option value="{{ option.value }}"{% if option.value == selected %} selected{% endif %} {% if option.attrs %} {{ attributes(option.attrs) }} {% endif %}>{{ option.text or option.value }}</option>
   {% endfor %}
   </select>
   {% endcall %}
